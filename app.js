@@ -42,11 +42,11 @@ app.use(function(err, req, res, next) {
 
 Handlebars.registerHelper('getRowColor', function(status) {
   switch (status) {
-    case 'pending':
+    case 'Just Arrived':
       return 'danger'
-    case 'approved':
+    case 'Started Printing':
       return 'warning'
-    case 'printed':
+    case 'Ready for Pickup':
       return 'active'
   }
 });
