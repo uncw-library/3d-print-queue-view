@@ -10,4 +10,13 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/* GET /image_rotation page */
+router.get('/image_rotation', function(req, res, next) {
+  request('https://digitalmakerspace.uncw.edu/api/v1/image_rotation', { json: true }, (err, httpres, body) => {
+    if (err) { res.send('Error.') }
+    res.render('image_rotation', { images: body.data });
+  });
+});
+
+
 module.exports = router;
