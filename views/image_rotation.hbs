@@ -1,11 +1,25 @@
+<script src="/javascripts/load-image.all.min.js"></script>
+
+<script>
+    setTimeout(function(){
+        window.location.reload(1);
+    }, 1000 * 60 * 60 * 3);
+</script>
+
 <div class="container">
     <div class="justify-content-center">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             {{#each images}}
                 <div class="carousel-item {{#unless @index}}active{{/unless}}">
-                    <img class="d-block" src="https://digitalmakerspace.uncw.edu/{{this.printed_picture_file}}?a=2">
+                    <img id="img{{@index}}" class="d-block" src="https://digitalmakerspace.uncw.edu/{{this.printed_picture_file}}?a=2">
                 </div>
+
+                <script type="text/javascript">
+                    loadImage("https://digitalmakerspace.uncw.edu/{{this.printed_picture_file}}", (canvas) => {
+                        $("#img{{@index}}").attr('src', canvas.toDataURL())
+                    }, {orientation: true})
+                </script>
             {{/each}}
         </div>
         </div>
