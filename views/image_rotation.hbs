@@ -16,9 +16,14 @@
                 </div>
 
                 <script type="text/javascript">
-                    loadImage("https://digitalmakerspace.uncw.edu/{{this.printed_picture_file}}", function (canvas) {
+                    try {
+                        loadImage("https://digitalmakerspace.uncw.edu/{{this.printed_picture_file}}", function (canvas) {
                         $("#img{{@index}}").attr('src', canvas.toDataURL())
-                    }, {orientation: true})
+                        }, {orientation: true})
+                    } catch (e) {
+                        console.log(e)
+                    }
+                    
                 </script>
             {{/each}}
         </div>
