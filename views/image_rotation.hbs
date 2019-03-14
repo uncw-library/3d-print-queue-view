@@ -16,7 +16,7 @@
                 </div>
 
                 <script type="text/javascript">
-                    loadImage("https://digitalmakerspace.uncw.edu/{{this.printed_picture_file}}", (canvas) => {
+                    loadImage("https://digitalmakerspace.uncw.edu/{{this.printed_picture_file}}", function (canvas) {
                         $("#img{{@index}}").attr('src', canvas.toDataURL())
                     }, {orientation: true})
                 </script>
