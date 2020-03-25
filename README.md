@@ -1,6 +1,6 @@
 ### What the app does
 
-  - Pull from 
+  - Pulls from 
 
     https://digitalmakerspace.uncw.edu/api/v1/queue 
     https://digitalmakerspace.uncw.edu/api/v1/image_rotation
