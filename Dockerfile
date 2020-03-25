@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:13.10-alpine
 
 # Install base packages
 RUN apk update && \
@@ -12,18 +12,14 @@ ENV TZ=America/New_York
 # Clean APK cache
 RUN rm -rf /var/cache/apk/*
 
-#create app directory
+#copy the repo inside, then npm install the dependencies
 WORKDIR /usr/src/
-
-# Install app dependencies
-COPY package.json .
+COPY . .
 RUN npm install
 
-# Bundle app source
-COPY . .
 
-# Listen on port 3000
+WORKDIR /usr/src/app/
+
 EXPOSE 3000
 
-# Start the web server
-CMD ["npm", "start"]
+CMD npm start
