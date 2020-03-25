@@ -8,18 +8,22 @@
   - Frontend endpoints
 
     http://localhost:3003
+
     http://localhost:3003/image_rotation
 
     -or-
 
     https://print-queue.libapps.uncw.edu
+    
     https://print-queue.libapps.uncw.edu/image_rotation
 
 ### How to build a dev box
 
-  ```git clone https://libapps-admin.uncw.edu/randall-dev/3d-print-queue-view
+  ```
+  git clone https://libapps-admin.uncw.edu/randall-dev/3d-print-queue-view
   cd 3d-print-queue-view
-  docker-compose up -d```
+  docker-compose up -d
+  ```
 
   - `docker-compose down`  # to stop it
 
@@ -28,9 +32,9 @@
 ### How to build a prod image
 
   - After you get the code like you want it,
-  - `docker login libapps-admin.uncw.edu:8000`
-  - `docker build -t libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view .`
-  - `docker push libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view`
+  `docker login libapps-admin.uncw.edu:8000`
+  `docker build -t libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view .`
+  `docker push libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view`
 
 
 
