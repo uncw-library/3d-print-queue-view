@@ -32,9 +32,10 @@
 ### How to build a prod image
 
   - After you get the code like you want it,
-  `docker login libapps-admin.uncw.edu:8000`
-  `docker build -t libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view .`
-  `docker push libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view`
-
+  ```
+  docker login libapps-admin.uncw.edu:8000
+  docker build -t libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view .
+  docker push libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view
+  ```
 
 
