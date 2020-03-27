@@ -1,22 +1,33 @@
-const express = require('express');
-const router = express.Router();
-const request = require('request');
+const express = require('express')
+const request = require('request')
+const axios = require('axios')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  request('https://digitalmakerspace.uncw.edu/api/v1/queue', { json: true }, (err, httpres, body) => {
+const router = express.Router()
+
+const homepage = 'https://digitalmakerspace.uncw.edu/api/v1/queue'
+const imgpage = 'https://digitalmakerspace.uncw.edu/api/v1/image_rotation'
+
+router.get('/', (req, res) => {
+  axios.get(homepage)
+    .then(data => {
+      console.log(data.data.data)
+      res.render('index', {queue: data.data.data})
+    })
+    .catch(err => res.send('Error.'));
+})
+
+// router.get('/', (req, res) => {
+//   request(homepage, { json: true }, (err, httpres, body) => {
+//     if (err) { res.send('Error.') }
+//     res.render('index', { queue: body.data })
+//   })
+// })
+
+router.get('/image_rotation', (req, res) => {
+  request(imgpage, { json: true }, (err, httpres, body) => {
     if (err) { res.send('Error.') }
-    res.render('index', { queue: body.data });
-  });
-});
+    res.render('image_rotation', { images: body.data })
+  })
+})
 
-/* GET /image_rotation page */
-router.get('/image_rotation', function(req, res, next) {
-  request('https://digitalmakerspace.uncw.edu/api/v1/image_rotation', { json: true }, (err, httpres, body) => {
-    if (err) { res.send('Error.') }
-    res.render('image_rotation', { images: body.data });
-  });
-});
-
-
-module.exports = router;
+module.exports = router

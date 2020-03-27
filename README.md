@@ -37,5 +37,4 @@
   docker build -t libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view .
   docker push libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view
   ```
-
-
+  
