@@ -9,11 +9,8 @@ const imgpage = 'https://digitalmakerspace.uncw.edu/api/v1/image_rotation'
 
 router.get('/', (req, res) => {
   axios.get(homepage)
-    .then(data => {
-      console.log(data.data.data)
-      res.render('index', {queue: data.data.data})
-    })
-    .catch(err => res.send('Error.'));
+    .then(data => res.render('index', {queue: data.data.data}))
+    .catch(err => res.sendStatus(404))
 })
 
 // router.get('/', (req, res) => {
