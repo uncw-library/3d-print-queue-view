@@ -13,7 +13,7 @@ WORKDIR /usr/src/
 COPY package*.json ./
 RUN npm install
 
-COPY . .
+COPY app/ ./app/
 WORKDIR /usr/src/app/
 EXPOSE 3000
 CMD npm start
