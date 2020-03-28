@@ -37,6 +37,7 @@ Push any code changes to gitlab.
   docker build -t libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view .
   docker push libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view
   ```
+
 ### What's inside the app
 
 Within the ./app folder is an Express app that uses axios to pull json from digitalmakerspace API app.  It uses morgan to pipe logs to stdout.  If env == development, it sends the error stack to the browser.  It uses handlebar templates.  And serve-favicon to serve favicon (good naming!).  Blueimp's load-image module is saved in ./app/javascripts, and is used for the image rotation feature.
