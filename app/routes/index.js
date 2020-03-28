@@ -4,27 +4,19 @@ const axios = require('axios')
 
 const router = express.Router()
 
-const homepage = 'https://digitalmakerspace.uncw.edu/api/v1/queue'
-const imgpage = 'https://digitalmakerspace.uncw.edu/api/v1/image_rotation'
+const queueApi = 'https://digitalmakerspace.uncw.edu/api/v1/queue'
+const imageApi = 'https://digitalmakerspace.uncw.edu/api/v1/image_rotation'
 
-router.get('/', (req, res) => {
-  axios.get(homepage)
+router.get('/', (req, res, next) => {
+  axios.get(queueApi)
     .then(data => res.render('index', {queue: data.data.data}))
-    .catch(err => res.sendStatus(404))
+    .catch(next)
 })
 
-// router.get('/', (req, res) => {
-//   request(homepage, { json: true }, (err, httpres, body) => {
-//     if (err) { res.send('Error.') }
-//     res.render('index', { queue: body.data })
-//   })
-// })
-
-router.get('/image_rotation', (req, res) => {
-  request(imgpage, { json: true }, (err, httpres, body) => {
-    if (err) { res.send('Error.') }
-    res.render('image_rotation', { images: body.data })
-  })
+router.get('/image_rotation', (req, res, next) => {
+  axios.get(imageApi)
+    .then(data => res.render('image_rotation', {images: data.data.data}))
+    .catch(next)
 })
 
 module.exports = router

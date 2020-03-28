@@ -7,10 +7,8 @@ RUN apk update && \
 RUN apk add --update tzdata
 ENV TZ=America/New_York
 
-# Clean APK cache
 RUN rm -rf /var/cache/apk/*
 
-# Copy package.json inside, then npm install the dependencies
 WORKDIR /usr/src/
 COPY package*.json ./
 RUN npm install
