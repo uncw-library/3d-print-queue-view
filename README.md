@@ -19,6 +19,8 @@ This app has two pages ('/' and '/image_rotation').
   docker-compose up -d
   ```
 
+  - see the app at localhost:3000
+
   - `docker-compose down`  # to stop it
 
 ### To revise the app

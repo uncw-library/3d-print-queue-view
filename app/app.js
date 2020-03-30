@@ -1,12 +1,20 @@
-const createError = require('http-errors')
 const express = require('express')
 const handlebars = require('hbs')
+const axios = require('axios')
+const createError = require('http-errors')
 const logger = require('morgan')
 const favicon = require('serve-favicon')
-const axios = require('axios')
+
+/*
+global variables
+*/
 
 const queueApi = 'https://digitalmakerspace.uncw.edu/api/v1/queue'
 const imageApi = 'https://digitalmakerspace.uncw.edu/api/v1/image_rotation'
+
+/*
+app configuration
+*/
 
 const app = express()
 app.set('views', './app/views')
@@ -14,6 +22,10 @@ app.set('view engine', 'hbs')
 app.use(express.static('./app/public'))
 app.use(favicon('./app/public/seahawk.ico'))
 app.use(logger('combined'))
+
+/*
+routes
+*/
 
 app.get('/', (req, res, next) => {
   axios.get(queueApi)
@@ -27,7 +39,8 @@ app.get('/image_rotation', (req, res, next) => {
     .catch(next)
 })
 
-// create a 404 page for anything that doesn't succeed in the above get functions
+// create a 404 page if the request doesn't succeed in the routes above
+
 app.use(function (req, res, next) {
   next(createError(404))
 })
@@ -39,6 +52,10 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
+
+/*
+handlebars config
+*/
 
 handlebars.registerHelper('getRowColor', (status) => {
   switch (status) {
