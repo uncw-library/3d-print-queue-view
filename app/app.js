@@ -1,12 +1,14 @@
 const express = require('express')
 const axios = require('axios')
 const createError = require('http-errors')
-const logger = require('morgan')
 const favicon = require('serve-favicon')
-const handlebars = require('./handlebars')
+const logger = require('morgan')
+const path = require('path')
+
+require('./handlebars')
 
 /*
-global variables
+globals
 */
 
 const queueApi = 'https://digitalmakerspace.uncw.edu/api/v1/queue'
@@ -17,11 +19,12 @@ app configuration
 */
 
 const app = express()
+app.locals.title = '3D Print queue'
 app.set('view engine', 'hbs')
-app.set('views', './app/views')
-app.use(express.static('./app/public'))
-app.use(favicon('./app/public/seahawk.ico'))
-app.use(logger('combined'))
+app.set('views', path.join(__dirname, 'views'))
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(favicon(path.join(__dirname, 'public', 'seahawk.ico')))
+app.use(logger('dev'))
 
 /*
 routes
@@ -29,27 +32,37 @@ routes
 
 app.get('/', (req, res, next) => {
   axios.get(queueApi)
-    .then(data => res.render('index', { queue: data.data.data }))
+    .then(response => ({ queue: response.data.data }))
+    .then(queueObject => res.render('index', queueObject))
     .catch(next)
 })
 
 app.get('/image_rotation', (req, res, next) => {
   axios.get(imageApi)
-    .then(data => res.render('image_rotation', { images: data.data.data }))
+    .then(response => ({ images: response.data.data }))
+    .then(images => res.render('image_rotation', images))
     .catch(next)
 })
 
-// create a 404 page if the request doesn't succeed in the routes above
+/*
+ if the request doesn't match a route above,
+ create a 404 error
+*/
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   next(createError(404))
 })
 
-app.use(function (err, req, res, next) {
-  // send error details to view only in development
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
+/*
+error handler
+*/
+
+app.use((err, req, res, next) => {
   res.status(err.status || 500)
+  res.locals.message = err.message
+  // send error details to view only in development
+  res.locals.error = app.get('env') === 'development' ? err : {}
+  console.error(err.stack)
   res.render('error')
 })
 

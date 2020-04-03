@@ -10,4 +10,5 @@ services:
       NODE_ENV: production
     command: npm start
     # command: npm test
+    # command: npm run dev
     restart: always
