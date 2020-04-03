@@ -1,6 +1,6 @@
 version: '2'
 services:
-  test:
+  3d-print-queue-view:
     labels:
       io.rancher.container.pull_image: always  
     scale: 1

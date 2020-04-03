@@ -1,6 +1,6 @@
 version: '2'
 services:
-  test:
+  3d-print-queue-view:
     image: libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view
     restart: always
     environment:
