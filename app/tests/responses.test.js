@@ -1,9 +1,3 @@
-describe('Sample Test', () => {
-  test('should test that true === true', () => {
-    expect(true).toBe(true)
-  })
-})
-
 const axios = require('axios')
 const app = require('../app')
 const supertest = require('supertest')
