@@ -1,5 +1,3 @@
-<script src="/javascripts/load-image.all.min.js"></script>
-
 <script>
     setTimeout(function(){
         window.location.reload(true);
@@ -12,18 +10,8 @@
         <div class="carousel-inner">
             {{#each images}}
                 <div class="carousel-item {{#unless @index}}active{{/unless}}">
-                    <img id="img{{@index}}" class="d-block" src="https://digitalmakerspace.uncw.edu/{{this.printed_picture_file}}?a=2">
+                    <img id="img{{@index}}" class="d-block" src="https://digitalmakerspace.uncw.edu/{{this.printed_picture_file}}">
                 </div>
-
-                <script type="text/javascript">
-                    try {
-                        loadImage("https://digitalmakerspace.uncw.edu/{{this.printed_picture_file}}", function (canvas) {
-                        $("#img{{@index}}").attr('src', canvas.toDataURL())
-                        }, {orientation: true})
-                    } catch (e) {
-                        console.log(e)
-                    }
-                </script>
             {{/each}}
         </div>
         </div>

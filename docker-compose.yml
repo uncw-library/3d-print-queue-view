@@ -3,11 +3,12 @@ services:
   3d-print-queue-view:
     build: .
     ports:
-      - "3003:3000"
+      - "3000:3000"
     volumes:
       - ./app/:/usr/src/app/
     environment:
       NODE_ENV: production
     command: npm start
     # command: npm test
+    # command: npm run dev
     restart: always
