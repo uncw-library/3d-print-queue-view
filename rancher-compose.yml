@@ -1,0 +1,7 @@
+version: '2'
+services:
+  test:
+    labels:
+      io.rancher.container.pull_image: always  
+    scale: 1
+    start_on_create: true
