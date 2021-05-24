@@ -2,13 +2,12 @@ version: '3.7'
 services:
   3d-print-queue-view:
     build: .
+    image: libapps-admin.uncw.edu:8000/randall-dev/3d-print-queue-view
     ports:
       - "3000:3000"
     volumes:
       - ./app/:/usr/src/app/
     environment:
-      NODE_ENV: production
-    command: npm start
-    # command: npm test
-    # command: npm run dev
+      NODE_ENV: development
+    command: npm run dev
     restart: always
