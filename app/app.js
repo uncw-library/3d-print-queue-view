@@ -11,8 +11,8 @@ require('./handlebars')
 globals
 */
 
-const queueApi = 'https://digitalmakerspace.uncw.edu/api/v1/queue'
-const imageApi = 'https://digitalmakerspace.uncw.edu/api/v1/image_rotation'
+const queueApi = 'https://digitalmakerspace.libapps.uncw.edu/api/v1/queue'
+const imageApi = 'https://digitalmakerspace.libapps.uncw.edu/api/v1/image_rotation'
 
 /*
 app configuration
