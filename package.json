@@ -8,7 +8,7 @@
     "dev": "nodemon ./app/bin/www"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "hbs": "~4.1.0",
